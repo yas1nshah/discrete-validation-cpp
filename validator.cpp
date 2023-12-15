@@ -59,7 +59,7 @@ bool validateCreditCard(string cardNumber) {
 }
 
 // eg no: 9780735200449
-bool isISBN13Valid(string isbn) {
+bool validateISBN13(string isbn) {
     // Check if the ISBN-13 has 13 digits
     if (isbn.length() != 13) {
         return false;
@@ -93,7 +93,7 @@ bool isISBN13Valid(string isbn) {
 }
 
 // eg no: 1932698183
-bool isISBN10Valid(string isbn) {
+bool validateISBN10(string isbn) {
     // Check if the ISBN-10 has 10 digits
     if (isbn.length() != 10) {
         return false;
@@ -116,7 +116,7 @@ bool isISBN10Valid(string isbn) {
 }
 
 // eg : 705632441947
-bool isUPCValid(string upc) {
+bool validateUPC(string upc) {
     // Check if th has 12 digits
     if (upc.length() != 12) {
         return false;
@@ -158,7 +158,8 @@ int main(){
 
     start:
     int n;
-    cout<<"What do you want to Validate?";
+    cout<<"What do you want to Validate?\n";
+    cout<<"1. ISBN 13 \n2. ISBN 10 \n3. Credit Card\n4. UPC\n";
     cin>>n;
 
     switch (n)
@@ -169,12 +170,12 @@ int main(){
             cin >> isbn13;
 
             // Validate ISBN-13
-            if (isISBN13Valid(isbn13)) {
+            if (validateISBN13(isbn13)) {
                 cout << "Valid ISBN-13.\n";
             } else {
                 cout << "Invalid ISBN-13.\n";
             }
-            break;
+            goto start;
         }
     
     case 2: // For ISBN 10
@@ -184,12 +185,12 @@ int main(){
             cin >> isbn10;
 
             // Validate ISBN-10
-            if (isISBN10Valid(isbn10)) {
+            if (validateISBN10(isbn10)) {
                 cout << "Valid ISBN-10.\n";
             } else {
                 cout << "Invalid ISBN-10.\n";
             }
-            break;
+            goto start;
         }
     
     case 3: // For Master or Visa Card
@@ -202,7 +203,7 @@ int main(){
             } else {
                 cout << "Invalid credit card number.\n";
             }
-            break;
+            goto start;
         }
     
     case 4: // For UPC
@@ -212,12 +213,12 @@ int main(){
             cin >> upc;
 
             // Validate UPC-A
-            if (isUPCValid(upc)) {
+            if (validateUPC(upc)) {
                 cout << "Valid UPC-A.\n";
             } else {
                 cout << "Invalid UPC-A.\n";
             }
-            break;
+            goto start;
         }
 
     default:
